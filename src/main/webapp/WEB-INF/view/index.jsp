@@ -8,6 +8,6 @@
 </head>
 <body>
 <p>iNDEX</p>
-<a href="/w">Welcome</a>
+<a href="/student/create">Create Student</a>
 </body>
 </html>

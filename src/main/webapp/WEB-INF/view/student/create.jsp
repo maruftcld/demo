@@ -8,14 +8,14 @@
 </head>
 <body>
  Create Student
- 
+ <p style="color: red"> ${msg} </p>
  <form action="/student/save" method="POST">
+    Name<input type="text" name="student_code"/><br>
  	Name<input type="text" name="student_name"/><br>
  	Course<input type="text" name="student_course"/><br>
  	<input type="submit" value="Save"/>
  </form>
  <a href="/student/getAll">Get</a>
- ${dfgd}
  
 </body>
 </html>
