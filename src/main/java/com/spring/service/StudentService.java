@@ -1,5 +1,7 @@
 package com.spring.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,10 @@ public class StudentService {
 			
 		}
 		return status;
+	}
+	
+	public List<Student> getAll(){
+        return studentDAO.getAll();
 	}
 
 }

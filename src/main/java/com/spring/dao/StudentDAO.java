@@ -1,10 +1,15 @@
 package com.spring.dao;
 
+import java.sql.DriverManager;
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.sql.DataSource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,5 +31,11 @@ public class StudentDAO {
 		System.err.println(status);
 		return status;
 	}
-
+	
+	public List<Student> getAll(){
+		String sql = "from Student";
+        List<Student> students = getSession().createQuery(sql).list();
+        return students;
+	}
+	
 }
