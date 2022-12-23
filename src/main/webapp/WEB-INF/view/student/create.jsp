@@ -17,10 +17,10 @@ table, th, td {
  <p style="color: red"> ${msg} </p>
  
  
- <form action="/student/save" method="POST">
-    Code<input type="text" name="student_code"/><br>
- 	Name<input type="text" name="student_name"/><br>
- 	Course<input type="text" name="student_course"/><br>
+ <form action="/student/saveStudent" method="POST">
+    Code<input type="text" name="code"/><br>
+ 	Name<input type="text" name="name"/><br>
+ 	Course<input type="text" name="course"/><br>
  	<input type="submit" value="Save"/>
  </form>
  <a href="/student/getAll">Get</a><br>
@@ -45,11 +45,11 @@ table, th, td {
  <script>
  $("#btn_save").on("click", function(){
 	       $.post(
-			"/student/save",
+			"/student/saveStudent",
 			{
-				student_code : $("#student_code").val(),
-				student_name : $("#student_name").val(),
-				student_course : $("#student_course").val()
+				code : $("#student_code").val(),
+				name : $("#student_name").val(),
+				course : $("#student_course").val()
 			},
 			function(data, status){
 				if(status == "success"){

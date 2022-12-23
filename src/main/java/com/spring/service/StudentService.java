@@ -44,6 +44,12 @@ public class StudentService {
 		return status;
 	}
 	
+	public String saveStudent(Student student) {	
+		String status = "";
+		studentDAO.save(student);
+		return status;
+	}
+	
 	public List<Student> getAll(){
         return studentDAO.getAll();
 	}
