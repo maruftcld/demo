@@ -22,9 +22,10 @@ public class StudentController {
 	
 	@Autowired
 	StudentService studentService;
-	
+
 	@RequestMapping("/create")
 	public ModelAndView create() {
+		//System.out.println(request);
 	    System.out.println("hello");
 		return new ModelAndView("student/create");
 	}
