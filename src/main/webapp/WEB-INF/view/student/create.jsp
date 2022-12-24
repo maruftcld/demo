@@ -74,7 +74,7 @@ table, th, td {
 				tr += "<td>" + data[i].code + "</td>";
 				tr += "<td>" + data[i].name + "</td>";
 				tr += "<td>" + data[i].course + "</td>";
-				tr += "<td><button>Edit</button></td>";
+				tr += "<td><a href='/student/delete/"+data[i].id+"'>Edit</a></td>";
 				tr += "</tr>";
 				$("#student_table tbody").append(tr);
 			}

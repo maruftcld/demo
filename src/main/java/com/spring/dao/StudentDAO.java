@@ -38,6 +38,12 @@ public class StudentDAO {
         List<Student> students = getSession().createQuery(sql).list();
         return students;
 	}
+	public List<Attendance> getAllAttendance(){
+		String sql = "from Attendance";
+        List<Attendance> attendances = getSession().createQuery(sql).list();
+        return attendances;
+	}
+	
 	
 	public int saveAttendance(Attendance attendance) {
 		int status = (int) getSession().save(attendance);

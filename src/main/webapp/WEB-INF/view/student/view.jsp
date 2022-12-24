@@ -27,12 +27,14 @@
 		                        <input type="hidden" name="code[]" value="${s.code}"/>
 			                    <input type="hidden" name="name[]" value="${s.name}"/>
 			                    <input type="hidden" name="course[]" value="${s.course}"/>
-			                    <input type="checkbox" name="status[]" checked/> 
+			                    <input type="hidden" name="id[]" value="${s.id}"/>
+			                    <input type="checkbox" name="status[]" checked value="${s.id}"/> 
 		                    </td>
 		                    
 		                </tr>
 		            </c:forEach>
 		            <input type="submit" value="Take Attendance">
+		            
             	</form>
         </table>
     </body>

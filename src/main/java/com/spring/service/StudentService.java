@@ -57,13 +57,18 @@ public class StudentService {
         return studentDAO.getAll();
 	}
 
+	public List<Attendance> getAllAttendances(){
+        return studentDAO.getAllAttendance();
+	}
+	
 	public String saveBatchStudent(HttpServletRequest request) {	
 		Map<String, String[]> map = request.getParameterMap();
 		String[] codes = map.get("code[]");
 		String[] names = map.get("name[]");
 		String[] courses = map.get("course[]");
+		String[] ids = map.get("id[]");
 		String[] statuses = map.get("status[]");
-		System.out.println(statuses);
+
 		for (int i = 0; i < statuses.length; i++) {
 			System.out.println(codes[i] + "   " + statuses[i]);
 			if(statuses[i] == null) {
