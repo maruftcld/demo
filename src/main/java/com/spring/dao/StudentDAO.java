@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.model.Attendance;
 import com.spring.model.Student;
 
 @Repository
@@ -36,6 +37,12 @@ public class StudentDAO {
 		String sql = "from Student";
         List<Student> students = getSession().createQuery(sql).list();
         return students;
+	}
+	
+	public int saveAttendance(Attendance attendance) {
+		int status = (int) getSession().save(attendance);
+		System.err.println(status);
+		return status;
 	}
 	
 }

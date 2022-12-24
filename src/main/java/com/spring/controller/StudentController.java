@@ -43,9 +43,21 @@ public class StudentController {
 		return new ModelAndView("student/create", "msg", msg);
 	}
 	
+	@RequestMapping(value = "/saveBatchStudent", method = RequestMethod.POST)
+	public ModelAndView saveBatchStudent(HttpServletRequest request) {
+		String msg = studentService.saveBatchStudent(request);
+		return new ModelAndView("student/create", "msg", msg);
+	}
+	
+	
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	public List<Student> getAll() {
 		return studentService.getAll();
+	}
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public ModelAndView show() {
+		List<Student> students = studentService.getAll();
+		return new ModelAndView("student/view", "students", students);
 	}
 	
 	@RequestMapping(value = "/get", method = RequestMethod.GET)

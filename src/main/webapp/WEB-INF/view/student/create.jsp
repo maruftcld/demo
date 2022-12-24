@@ -68,6 +68,7 @@ table, th, td {
          type: "GET",
          url: "/student/getAll",
          success : function(data){
+        	 $("#student_table tbody").html("");
 			for(i=0; i<data.length; i++){
 			var tr = "<tr>";
 				tr += "<td>" + data[i].code + "</td>";
