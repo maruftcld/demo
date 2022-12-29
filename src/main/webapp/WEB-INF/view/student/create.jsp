@@ -17,18 +17,33 @@ table, th, td {
  <p style="color: red"> ${msg} </p>
  
  
- <form action="/student/saveStudent" method="POST">
+ <form action="/student/_save" method="POST" enctype="multipart/form-data">
     Code<input type="text" name="code"/><br>
  	Name<input type="text" name="name"/><br>
  	Course<input type="text" name="course"/><br>
+ 	
+ 	
+ 	
+ 	<input type="file" name="photo"/>
+ 	
+ 	
  	<input type="submit" value="Save"/>
  </form>
  <a href="/student/getAll">Get</a><br>
+ <br>
+ <br>
+ 
+ 
  
 <form>
     Code<input type="text" id="student_code"/><br>
  	Name<input type="text" id="student_name"/><br>
  	Course<input type="text" id="student_course"/><br>
+ 	<select id="country">
+ 		<option value="BD">BD</option>
+ 		<option value="UK">UK</option>
+ 		<option value="USA">USA</option>
+ 	</select><br>
  	<input type="button" value="Save" id="btn_save"/>
 </form>
 <button id="btn_getAll">Get All</button>
@@ -49,7 +64,8 @@ table, th, td {
 			{
 				code : $("#student_code").val(),
 				name : $("#student_name").val(),
-				course : $("#student_course").val()
+				course : $("#student_course").val(),
+				country : $("#country :selected").val();
 			},
 			function(data, status){
 				if(status == "success"){
@@ -66,6 +82,7 @@ table, th, td {
  $("#btn_getAll").click(function(){
 	 $.ajax({
          type: "GET",
+         
          url: "/student/getAll",
          success : function(data){
         	 $("#student_table tbody").html("");

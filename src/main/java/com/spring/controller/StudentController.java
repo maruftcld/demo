@@ -1,19 +1,27 @@
 package com.spring.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.model.Attendance;
@@ -27,6 +35,8 @@ public class StudentController {
 	
 	@Autowired
 	StudentService studentService;
+	@Autowired 
+	ServletContext servletContext;
 
 	@RequestMapping("/create")
 	public ModelAndView create() {
@@ -34,6 +44,34 @@ public class StudentController {
 		
 	    System.out.println("hello");
 		return new ModelAndView("student/create");
+	}
+	
+	@RequestMapping(value = "/_save", headers=("content-type=multipart/*"), method = RequestMethod.POST)
+	public ModelAndView _save(HttpServletRequest request,
+			@RequestParam("photo") MultipartFile photo) throws IOException {
+		String photoname = request.getParameter("code") + ".jpg";
+		
+		saveFile(photo, photoname, "assets/images");
+		//traineeDAO.save(trainee);
+		
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+	
+	private void saveFile(MultipartFile file, String fileName, String path) throws IOException {
+		byte[] bytes  = file.getBytes();
+		String filePath = servletContext.getRealPath(path);
+		File dir = new File(filePath);
+		File serverFile = new File(dir.getAbsolutePath()
+				+ File.separator + fileName);
+		System.out.println(serverFile);
+		BufferedOutputStream stream = new BufferedOutputStream(
+				new FileOutputStream(serverFile));
+		stream.write(bytes);
+		stream.close();
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -52,6 +90,8 @@ public class StudentController {
 	
 	@RequestMapping(value = "/saveStudent", method = RequestMethod.POST)
 	public ModelAndView saveStudent(@ModelAttribute("student") Student student) {
+		System.out.println("hit");
+		System.err.println(student.getCountry());
 		String msg = studentService.saveStudent(student);
 		return new ModelAndView("student/create", "msg", msg);
 	}

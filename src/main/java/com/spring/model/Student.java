@@ -24,6 +24,17 @@ public class Student {
 	@Column(name = "student_course")
 	private String course;
 	
+	private String country;
+	
+	
+	
+	
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
 	public String getCode() {
 		return code;
 	}
